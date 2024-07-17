@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "../reducers/ProductsSlice";
+import { productsAPI } from "../../components/Products/productsAPI";
+import CartReducer from "../reducers/CartSlice";
 
 export const store = configureStore({
     reducer: {
-        products: productsReducer
-    }
+        products: productsReducer,
+        cart: CartReducer,
+        [productsAPI.reducerPath]: productsAPI.reducer
+    },
+     // Adding the api middleware enables caching, invalidation, polling,
+  // and other useful features of `rtk-query`.
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsAPI.middleware)
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
