@@ -33,7 +33,7 @@ const Navbar = () => {
       navigate('/Home');
     }
     if(item === 'Product') {
-      navigate('/Product');
+      navigate('/products');
     }
   }
 
